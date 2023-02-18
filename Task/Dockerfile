@@ -1,8 +1,6 @@
-FROM python:3.8-slim-buster
-
+FROM python:3.11.0b3-alpine3.16
+WORKDIR /app
 COPY . .
-
-RUN pip3 install -r requirements.txt
-
-ENTRYPOINT ["python3"]
- CMD [ "" ]
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
+CMD ["app.py"]
