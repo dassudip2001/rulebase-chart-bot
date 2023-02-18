@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver-app
+  labels:
+    name: webserver-app
+spec:
+  containers:
+  - name: webserver-app
+    image: sudipdas2001/webserver
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8000
