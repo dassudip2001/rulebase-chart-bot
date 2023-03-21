@@ -19,9 +19,10 @@ class RuleBot():
 
     def __init__(self):
         self.alienable = {
-            'describe_planet_intent': r'.*\s*your planet.*',
-            'answer_why_intent': r'why\sare.*',
-            'about': r'.*\s*intelligent'
+            # 'describe_planet_intent': r'.*\s*your planet.*',
+            # 'answer_why_intent': r'why\sare.*',
+            # 'intelligent': r'.*\s*intelligent',
+            'about_my_company': r'.*\s*about my company'
         }
 
     def greet(self):
@@ -37,26 +38,28 @@ class RuleBot():
     def make_exit(self, reply):
         for command in self.exit_commands:
             if reply == command:
-                print("ok, have a nice day")
+                print("ok, Have a nice day")
                 return True
 
     def chart(self):
         reply = input(random.choice(self.random_questions)).lower()
         while not self.make_exit(reply):
             reply = input(self.match_reply(reply))
-            print(reply, 'user question')
+            # print(reply, 'user question')
 
     def match_reply(self, reply):
         for key, value in self.alienable.items():
             intent = key
             regex_pattern = value
             found_match = re.match(regex_pattern, reply)
-            if found_match and intent == 'describe_planet_intent':
-                return self.describe_planet_intent()
-            elif found_match and intent == 'answer_why_intent':
-                return self.answer_why_intent()
-            elif found_match and intent == 'about':
-                return self.about()
+            # if found_match and intent == 'describe_planet_intent':
+            #     return self.describe_planet_intent()
+            # elif found_match and intent == 'answer_why_intent':
+            #     return self.answer_why_intent()
+            # elif found_match and intent == 'intelligent':
+            #     return self.intelligent()
+            if found_match and intent == 'about_my_company':
+                return self.about_my_company()
             elif not found_match:
                 return self.not_match_intent()
 
@@ -80,10 +83,14 @@ class RuleBot():
                      )
         return random.choice(responses)
 
-    def about(self):
+    def intelligent(self):
         responses = ("Organisation is the backbone of management because without an efficient organization no management can perform its functions smoothly.\n",
                      " In the management process this organization stands as a second state which tries to combine various activities in a business to accomplish pre-determined goals.\n",
                      "It is the structural framework of duties and responsibilities required of personnel in performing various functions with a view to achieve business goals.\n")
+        return random.choice(responses)
+
+    def about_my_company(self):
+        responses = ('It is a bigener friendly company\n', 'its osm!!')
         return random.choice(responses)
 
     def not_match_intent(self):
