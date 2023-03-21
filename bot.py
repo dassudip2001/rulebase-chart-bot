@@ -28,7 +28,7 @@ def LemNormalize(text):
     return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punc_dict)))
 
 
-greet_inputs = ('hello', 'whatsup', 'how are you?')
+greet_inputs = ('hello', 'Hello', 'whatsup', 'how are you?', 'How are you?')
 greed_responses = ('hi', 'hay', 'Hey There')
 
 
@@ -58,7 +58,8 @@ def response(user_responce):
 flag = True
 print("hello ! i am chartbot. start conversion using hello .for ending typing type bye !")
 while (flag == True):
-    user_responce = input()
+    # bind To The Html Page
+    user_responce = input("Enter Your Input :-")
     user_responce = user_responce.lower()
     if (user_responce != 'bye'):
         if (user_responce == 'thank you' or user_responce == 'thanks'):
